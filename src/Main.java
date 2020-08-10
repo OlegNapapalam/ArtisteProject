@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Создадим наших людей!");
+        //создаем экземляры класса Human, и сразу передаем необходимые конструктору значения с помощью методов ввода
         Human SomeHumanObject_1 = new Human(inputName(), inputAge());
         Human SomeHumanObject_2 = new Human(inputName(), inputAge());
         Human SomeHumanObject_3 = new Human(inputName(), inputAge());
@@ -22,19 +23,18 @@ public class Main {
 
         System.out.println("Добавим человека самоучку");
         Human NotArtisteHasSkill = new Human(inputName(), inputAge());
-
+        //эксземпляр класса Human который получает самообразование без Академии
         NotArtisteHasSkill.selfEducation();
         System.out.println("Человек с именем - " + NotArtisteHasSkill.getName() + ", артист? " +
                 NotArtisteHasSkill.getIsArtiste() + ". Его навык: " + NotArtisteHasSkill.getSkill() + ".");
 
-
+        //колекция людей которые пойдуть становиться артистами в академию
         ArrayList<Human> list = new ArrayList<Human>();
         list.add(SomeHumanObject_1);
         list.add(SomeHumanObject_2);
         list.add(SomeHumanObject_3);
         list.add(SomeHumanObject_4);
         list.add(SomeHumanObject_5);
-
 //        list.add(SomeHumanObject_6);
 //        list.add(SomeHumanObject_7);
 //        list.add(SomeHumanObject_8);
@@ -42,28 +42,33 @@ public class Main {
 //        list.add(SomeHumanObject_10);
 
 
-//
-//        for (Human human : list){
-//            System.out.println(human.getName());
-//            System.out.println(human.getAge());
-//        }
-
         System.out.println("Созданые люди идут учиться навыкам в академию");
         System.out.println("Кроме самоучки, ему нечего там делать");
+        //создаем экземпляр класса АкадемияИскуств, где Люди будут проходить обучение
         AcademyOfArts someAcademyOfArts = new AcademyOfArts();
         for (Human human : list) {
             System.out.println("Человек по имени " + human.getName() + " проходит обучение.");
+
+            //Делаем Человека Артистом
             someAcademyOfArts.toStudyForAnArtiste(human);
         }
 
+        //Лист Артистов
         ArrayList<Human> artisteList = new ArrayList<Human>();
+        //Лист самообразованых
         ArrayList<Human> selfEducationList = new ArrayList<Human>();
+
         for (Human human : list) {
+            //если человек был в академии у него значение IsArtiste true
             if (human.getIsArtiste()) artisteList.add(human);
-            else if (human.getIsArtiste() && human.getSkill() != null) selfEducationList.add(human);
+            //если человек небыл в академи у него значение IsArtiste false и значение навыка != null
+                // он попадает в лист самообразованых
+            else if (!human.getIsArtiste() && human.getSkill() != null) selfEducationList.add(human);
         }
 
         Concert concert;
+        //Концерт принимает лист всех артистов
+        //И в конструкторе вызывает методы Представления и Шоу
         new Concert(artisteList);
 
     }

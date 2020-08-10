@@ -1,8 +1,12 @@
 import java.util.ArrayList;
 
 public class Concert {
+    //конструктор Концерта, принимает список Human которые артисты
+    //и сразу запускает свои методы
     public Concert(ArrayList<Human> list) {
+        //Метод презентации артистов
         presentArtiste(list);
+        //Метод Шоу
         makeShow(list);
 
     }

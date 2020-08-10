@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+//подключаем статические методы интерфейса что отвечает за присвоение навыков
 public class AcademyOfArts implements SkillsInterface {
 
     public AcademyOfArts() {
@@ -11,9 +12,10 @@ public class AcademyOfArts implements SkillsInterface {
     //Обучаем Человека
     public void toStudyForAnArtiste(Human human) {
         int r = (int) (Math.random() * 5);
+        //делаем Человека Артистом
         human.artiste(true, setPenName(), SkillsInterface.setSkill(r), SkillsInterface.setTypeSkill(r));
     }
-
+    //Метод который возвращает значение псевдонима Артиста
     private String setPenName() {
         String penName = null;
         while (penName == null || penName.length() < 2) {
