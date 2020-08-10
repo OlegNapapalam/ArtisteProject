@@ -14,7 +14,6 @@ public class Main {
         Human SomeHumanObject_3 = new Human(inputName(), inputAge());
         Human SomeHumanObject_4 = new Human(inputName(), inputAge());
         Human SomeHumanObject_5 = new Human(inputName(), inputAge());
-
 //        Human SomeHumanObject_6 = new Human(inputName(),inputAge());
 //        Human SomeHumanObject_7 = new Human(inputName(),inputAge());
 //        Human SomeHumanObject_8 = new Human(inputName(),inputAge());
@@ -24,9 +23,10 @@ public class Main {
         System.out.println("Добавим человека самоучку");
         Human NotArtisteHasSkill = new Human(inputName(), inputAge());
 
-        NotArtisteHasSkill.getSelfEducationSkill();
+        NotArtisteHasSkill.selfEducation();
         System.out.println("Человек с именем - " + NotArtisteHasSkill.getName() + ", артист? " +
-                NotArtisteHasSkill.isArtiste + ". Его навык - " + NotArtisteHasSkill.skill + ".");
+                NotArtisteHasSkill.getIsArtiste() + ". Его навык: " + NotArtisteHasSkill.getSkill() + ".");
+
 
         ArrayList<Human> list = new ArrayList<Human>();
         list.add(SomeHumanObject_1);
@@ -59,12 +59,13 @@ public class Main {
         ArrayList<Human> artisteList = new ArrayList<Human>();
         ArrayList<Human> selfEducationList = new ArrayList<Human>();
         for (Human human : list) {
-            if (human.isArtiste) artisteList.add(human);
-            else if (human.isArtiste && human.skill != null) selfEducationList.add(human);
+            if (human.getIsArtiste()) artisteList.add(human);
+            else if (human.getIsArtiste() && human.getSkill() != null) selfEducationList.add(human);
         }
 
         Concert concert;
         new Concert(artisteList);
+
     }
 
 

@@ -1,22 +1,16 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
-public class Human implements Artiste, SelfEducation{
+public class Human implements Artiste, SkillsInterface{
     private String name;
     private int age;
 
-    protected boolean isArtiste = false;
-    protected String penName = null;
-    protected String skill = null;
-
-    public Human() {
-    }
+    private boolean isArtiste = false;
+    private String penName = null;
+    private String skill = null;
+    private String typeSkill = null;
 
     public Human(String name, int age) {
         setName(name);
@@ -100,12 +94,18 @@ public class Human implements Artiste, SelfEducation{
         return buffArg;
     }
 
+    public void selfEducation(){
+        int r = (int) (Math.random() * 5);
+        this.skill = SkillsInterface.setSkill(r);
+        this.typeSkill = SkillsInterface.setTypeSkill(r);
+    }
 
     @Override
-    public Artiste artiste(boolean isArtiste, String penName, String skill) {
+    public Artiste artiste(boolean isArtiste, String penName, String skill, String typeSkill) {
         this.isArtiste = isArtiste;
         this.penName = penName;
         this.skill = skill;
+        this.typeSkill = typeSkill;
         return null;
     }
 
@@ -125,21 +125,8 @@ public class Human implements Artiste, SelfEducation{
     }
 
     @Override
-    public String getSelfEducationSkill() {
-        final HashMap<String, String> someSkills = new HashMap<String, String>() {{
-            put("танцует польку", "танцор");
-            put("танцует без ног", "танцор");
-            put("поет песню Гордона - про Соловьева", "певец");
-            put("поет песню Скрябина - Гондурас", " певец");
-            put("играет на гитаре", "музыкант");
-            put("играет на барабане ", "музыкант");
-        }};
-        ArrayList listSkill = new ArrayList<>();
-        for (Map.Entry entry:someSkills.entrySet()) {
-            listSkill.add(entry.getKey());
-        }
-        int r = (int) (Math.random() * 5);
-        this.skill=someSkills.get((String) listSkill.get(r)) +", "+ (String) (listSkill.get(r));
-        return skill;
+    public String getTypeSkill() {
+        return typeSkill;
     }
+
 }
