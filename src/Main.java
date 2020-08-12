@@ -1,3 +1,8 @@
+import skillsPack.Dancer;
+import skillsPack.Musician;
+import skillsPack.SelfMade;
+import skillsPack.Vocalist;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,10 +28,10 @@ public class Main {
 
         System.out.println("Добавим человека самоучку");
         Human NotArtisteHasSkill = new Human(inputName(), inputAge());
-        //эксземпляр класса Human который получает самообразование без Академии
-        NotArtisteHasSkill.selfEducation();
-        System.out.println("Человек с именем - " + NotArtisteHasSkill.getName() + ", артист? " +
-                NotArtisteHasSkill.getIsArtiste() + ". Его навык: " + NotArtisteHasSkill.getSkill() + ".");
+        NotArtisteHasSkill.artiste = new SelfMade();
+
+        System.out.println("Человек с именем - " + NotArtisteHasSkill.getName() + ", " +
+                NotArtisteHasSkill.artiste.toString() + ". Его навык: " + NotArtisteHasSkill.artiste.getSkill() + ".");
 
         //колекция людей которые пойдуть становиться артистами в академию
         ArrayList<Human> list = new ArrayList<Human>();
@@ -59,11 +64,11 @@ public class Main {
         ArrayList<Human> selfEducationList = new ArrayList<Human>();
 
         for (Human human : list) {
-            //если человек был в академии у него значение IsArtiste true
-            if (human.getIsArtiste()) artisteList.add(human);
-            //если человек небыл в академи у него значение IsArtiste false и значение навыка != null
-                // он попадает в лист самообразованых
-            else if (!human.getIsArtiste() && human.getSkill() != null) selfEducationList.add(human);
+            if (human.artiste instanceof Dancer ||
+                    human.artiste instanceof Musician ||
+                    human.artiste instanceof Vocalist)
+                artisteList.add(human);
+            else if (human.artiste instanceof SelfMade) selfEducationList.add(human);
         }
 
         Concert concert;
